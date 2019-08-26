@@ -1,13 +1,13 @@
 module.exports = function (sequelize, DataTypes) {
-  var ImgTable = sequelize.define("MenuColumn", {
+  let SideBar = sequelize.define("SideBar", {
     header: DataTypes.STRING,
     body: DataTypes.STRING
   });
 
-  ImgTable.associate = (models) => {
-    models.Featured.belongsTo(models.Profile);
-    models.Featured.hasOne(models.ImgTable);
+  SideBar.associate = (models) => {
+    models.SideBar.belongsTo(models.Profile);
+    models.SideBar.hasOne(models.ImgTable);
   }
 
-  return ImgTable;
+  return SideBar;
 };

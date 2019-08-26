@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Featured = sequelize.define("Profile", {
+  let Featured = sequelize.define("Featured", {
     header: DataTypes.STRING,
     body: DataTypes.STRING,
     price: DataTypes.FLOAT

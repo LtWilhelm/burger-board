@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  var MenuColumn = sequelize.define("MenuColumn", {
+  let MenuColumn = sequelize.define("MenuColumn", {
     header: DataTypes.STRING,
     item_1: DataTypes.STRING,
     price_1: DataTypes.FLOAT,
@@ -21,7 +21,7 @@ module.exports = function (sequelize, DataTypes) {
 
   MenuColumn.associate = (models) => {
     models.MenuColumn.belongsTo(models.Profile);
-    models.MenuColumn.belongsTo(models.TimeSlot);
+    models.MenuColumn.belongsTo(models.Tag);
     models.MenuColumn.hasOne(models.ImgTable);
   }
 
