@@ -1,4 +1,5 @@
 /* Burger Board Main Site Styles */
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 * {
   box-sizing: border-box;
@@ -14,6 +15,7 @@
 html, body {
   width: 100%;
   height: 100%;
+  font-family: 'Roboto', sans-serif;
 }
 
 .main-container {
