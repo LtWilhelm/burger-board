@@ -33,7 +33,7 @@ h1{
 }
 
 .admin-nav-container {
-  width: 15%;
+  width: 20%;
   background-color: var(--admin-nav-bg-color);
 }
 .admin-nav-item,a{
@@ -41,15 +41,19 @@ h1{
   padding: 2px;
   margin-left: 20px;
 }
-
-
 .admin-content-container {
-  width: 85%;
+  width: 80%;
   background-color: var(--admin-content-bg-color);
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-direction: column;
+  flex-wrap: wrap;
+}
+.heading{
+  display: flex;
+  color: black;
+  width: 80%;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 .preview-board{
   width: 80%;
