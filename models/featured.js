@@ -6,8 +6,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Featured.associate = (models) => {
-    models.Featured.belongsTo(models.Profile);
-    models.Featured.hasOne(models.ImgTable);
+    models.Featured.belongsToMany(models.Profile, {through: 'ProfileFeatured'});
   }
 
   return Featured;

@@ -22,7 +22,6 @@ module.exports = function (sequelize, DataTypes) {
   MenuColumn.associate = (models) => {
     models.MenuColumn.belongsTo(models.Profile);
     models.MenuColumn.belongsTo(models.Tag);
-    models.MenuColumn.hasOne(models.ImgTable);
   }
 
   return MenuColumn;

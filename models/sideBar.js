@@ -6,7 +6,6 @@ module.exports = function (sequelize, DataTypes) {
 
   SideBar.associate = (models) => {
     models.SideBar.belongsTo(models.Profile);
-    models.SideBar.hasOne(models.ImgTable);
   }
 
   return SideBar;

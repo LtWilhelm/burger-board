@@ -14,12 +14,15 @@ function readFiles(directory) {
                 let currentDir = directory + file.name + '/';
                 readFiles(currentDir);
             } else if (file.isFile()) {
+                let imgPath = (directory + file.name).slice(8);
                 console.log(directory + file.name);
                 db.ImgTable.create({
                     name: file.name,
-                    img_path: directory + file.name
+                    img_path: imgPath
                 }).then(res => {
                     console.log('successfully added '+ file.name)
+                }).catch(err => {
+                    console.log('Image already in database');
                 });
             }
         })
