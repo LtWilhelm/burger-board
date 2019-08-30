@@ -29,7 +29,7 @@ module.exports = function(app) {
 
   // Load Templates: GET /api/templates
   app.get("/api/templates", function(req, res) {
-    db.Placeholder.findAll({}).then(function(dbTemplate) {
+    db.Featured.findAll({}).then(function(dbTemplate) {
       res.json(dbTemplate);
     });
   });
@@ -47,7 +47,7 @@ module.exports = function(app) {
 
   // Load Display: GET /api/display/:profileId
   app.get("/api/display/:profileId", function(req, res) {
-    db.Placeholder.findAll({
+    db.Profile.findAll({
       where: {
         profileId: req.params.profileId
       }
@@ -58,7 +58,7 @@ module.exports = function(app) {
 
   // Load Menu: GET /api/menu/:profileId/:menuId
   app.get("/api/display/:profileId/menuId", function(req, res) {
-    db.Placeholder.findAll({
+    db.Profile.findAll({
       where: {
         profileId: req.params.profileId,
         menuId: req.params.menuId
@@ -81,7 +81,7 @@ module.exports = function(app) {
 
   // New Template: POST /api/template/create
   app.post("/api/template/create", function(req, res) {
-    db.Placeholder.create(req.body).then(function(dbTemplate) {
+    db.Featured.create(req.body).then(function(dbTemplate) {
       res.json(dbTemplate);
     });
   });
@@ -125,7 +125,7 @@ module.exports = function(app) {
 
   // Edit Template: PUT /api/template/edit/:id
   app.put("/api/template/edit/:id", function(req, res) {
-    db.Placeholder.update(
+    db.Featured.update(
       req.body,
       {
         where: {
@@ -152,7 +152,7 @@ module.exports = function(app) {
 
   // Edit Menu: PUT /api/menu/:profileId/:menuId
   app.put("/api/menu/:profileId/:menuId", function(req, res) {
-    db.Placeholder.update(
+    db.MenuColumn.update(
       req.body,
       {
         where: {
@@ -210,7 +210,7 @@ module.exports = function(app) {
 
   // Delete template/profile: DELETE /api/[template/profile]/:id
   app.delete("/api/template/:id", function(req, res) {
-    db.Placeholder.destroy({
+    db.Featured.destroy({
        where: { 
          id: req.params.id
         } 
