@@ -2,12 +2,12 @@ module.exports = function(sequelize, DataTypes) {
   let Featured = sequelize.define("Featured", {
     header: DataTypes.STRING,
     body: DataTypes.STRING,
-    price: DataTypes.FLOAT
+    price: DataTypes.FLOAT,
+    isAnimated: DataTypes.INTEGER
   });
 
   Featured.associate = (models) => {
-    models.Featured.belongsTo(models.Profile);
-    models.Featured.hasOne(models.ImgTable);
+    models.Featured.belongsToMany(models.Profile, {through: 'ProfileFeatured'});
   }
 
   return Featured;

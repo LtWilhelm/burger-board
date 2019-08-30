@@ -1,7 +1,11 @@
 module.exports = function (sequelize, DataTypes) {
   let ImgTable = sequelize.define("ImgTable", {
     name: DataTypes.STRING,
-    img_path: DataTypes.STRING
+    img_path: {
+      allowNull: false,
+      unique: true,
+      type: DataTypes.STRING
+    }
   });
 
   ImgTable.associate = (models) => {
