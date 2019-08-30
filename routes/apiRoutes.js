@@ -6,6 +6,13 @@ module.exports = function (app) {
   //                   GET ROUTES
   //*************************************************
 
+  // Load Images
+  app.get('/api/images', function(req, res){
+    db.ImgTable.findAll({}).then(function(dbImg){
+      res.json(dbImg);
+    });
+  });
+
   // Load Profiles: GET /api/profiles
   app.get("/api/profiles", function (req, res) {
     db.Profile.findAll({}).then(function (dbProfile) {
@@ -47,18 +54,21 @@ module.exports = function (app) {
 
   // Load Display: GET /api/display/:profileId
   app.get("/api/display/:profileId", function (req, res) {
-    db.Profile.findAll({
+    db.Profile.findOne({
       where: {
-        profileId: req.params.profileId
+        id: req.params.profileId
       },
       include: [{
-        model: db.MenuColumn
+        model: db.MenuColumn,
+        as: 'menu'
       },
       {
-        model: db.Featured
+        model: db.Featured,
+        as: 'featured'
       },
       {
-        model: db.SideBar
+        model: db.SideBar,
+        as: 'sidebar'
       }]
     }).then(function (dbDisplay) {
       res.json(dbDisplay);
@@ -86,6 +96,10 @@ module.exports = function (app) {
   // New Profile: POST /api/profile/create
   app.post("/api/profiles/create", function (req, res) {
     db.Profile.create(req.body).then(function (dbProfile) {
+      for (let i = 0; i < 4; i++) {
+        db.MenuColumn.create({ProfileId: dbProfile.id});
+      }
+      db.SideBar.create({sidebarId: dbProfile.id});
       res.json(dbProfile);
     });
   });

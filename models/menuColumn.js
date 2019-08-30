@@ -18,6 +18,8 @@ module.exports = function (sequelize, DataTypes) {
     item_8: DataTypes.STRING,
     price_8: DataTypes.FLOAT,
     isAnimated: DataTypes.INTEGER
+  },{
+    timestamps: false
   });
 
   MenuColumn.associate = (models) => {
