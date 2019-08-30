@@ -1,24 +1,221 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+
+  // Anything with db.Placeholder is not finsihed, use CTRL + F to find all of them
+  // Also not sure whether some of the GET routes will use findOne or findAll
+
+  //*************************************************
+  //                   GET ROUTES
+  //*************************************************
+
+  // Load Profiles: GET /api/profiles
+  app.get("/api/profiles", function(req, res) {
+    db.Profile.findAll({}).then(function(dbProfile) {
+      res.json(dbProfile);
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  // Load Profile for editing: GET /api/profile/:id
+  app.get("/api/profile/:id", function(req, res) {
+    db.Profile.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbProfile) {
+      res.json(dbProfile);
     });
   });
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
+  // Load Templates: GET /api/templates
+  app.get("/api/templates", function(req, res) {
+    db.Featured.findAll({}).then(function(dbTemplate) {
+      res.json(dbTemplate);
+    });
+  });
+
+  // Load Featured: GET /api/featured/:profileId
+  app.get("/api/featured/:profileId", function(req, res) {
+    db.Featured.findAll({
+      where: {
+        profileId: req.params.profileId
+      }
+    }).then(function(dbFeatured) {
+      res.json(dbFeatured);
+    });
+  });
+
+  // Load Display: GET /api/display/:profileId
+  app.get("/api/display/:profileId", function(req, res) {
+    db.Profile.findAll({
+      where: {
+        profileId: req.params.profileId
+      }
+    }).then(function(dbDisplay) {
+      res.json(dbDisplay);
+    });
+  });
+
+  // Load Menu: GET /api/menu/:profileId/:menuId
+  app.get("/api/display/:profileId/menuId", function(req, res) {
+    db.Profile.findAll({
+      where: {
+        profileId: req.params.profileId,
+        menuId: req.params.menuId
+      }
+    }).then(function(dbMenu) {
+      res.json(dbMenu);
+    });
+  });
+
+  //*************************************************
+  //                  POST ROUTES
+  //*************************************************
+
+  // New Profile: POST /api/profile/create
+  app.post("/api/profiles/create", function(req, res) {
+    db.Profile.create(req.body).then(function(dbProfile) {
+      res.json(dbProfile);
+    });
+  });
+
+  // New Template: POST /api/template/create
+  app.post("/api/template/create", function(req, res) {
+    db.Featured.create(req.body).then(function(dbTemplate) {
+      res.json(dbTemplate);
+    });
+  });
+
+  // New Image: POST /api/image/new
+  app.post("/api/image/new", function(req, res) {
+    db.ImgTable.create(req.body).then(function(dbImg) {
+      res.json(dbImg);
+    });
+  });
+
+  //*************************************************
+  //                   PUT ROUTES
+  //*************************************************
+
+  // Save Edit: PUT /api/profile/edit/:id
+  app.put("/api/profile/edit/:id", function(req, res) {
+    db.Profile.update(
+      req.body,
+      {
+        where: {
+          id: req.body.id
+        }
+      }).then(function(dbProfile) {
+      res.json(dbProfile);
+    });
+  });
+
+  // Edit Image: PUT /api/image/edit/:id
+  app.put("/api/image/edit/:id", function(req, res) {
+    db.ImgTable.update(
+      req.body,
+      {
+        where: {
+          id: req.body.id
+        }
+      }).then(function(dbImg) {
+      res.json(dbImg);
+    });
+  });
+
+  // Edit Template: PUT /api/template/edit/:id
+  app.put("/api/template/edit/:id", function(req, res) {
+    db.Featured.update(
+      req.body,
+      {
+        where: {
+          id: req.body.id
+        }
+      }).then(function(dbTemplate) {
+      res.json(dbTemplate);
+    });
+  });
+
+  // Edit Sidebar: PUT /api/sidebar/:profileId/:sideBarId
+  app.put("/api/sidebar/:profileId/:sideBarId", function(req, res) {
+    db.SideBar.update(
+      req.body,
+      {
+        where: {
+          profileId: req.body.profileId,
+          sideBarId: req.body.sideBarId
+        }
+      }).then(function(dbSidebar) {
+      res.json(dbSidebar);
+    });
+  });
+
+  // Edit Menu: PUT /api/menu/:profileId/:menuId
+  app.put("/api/menu/:profileId/:menuId", function(req, res) {
+    db.MenuColumn.update(
+      req.body,
+      {
+        where: {
+          profileId: req.body.profileId,
+          menuId: req.body.menuId
+        }
+      }).then(function(dbMenu) {
+      res.json(dbMenu);
+    });
+  });
+
+  // **********
+  // Edit Featured: load templates, POST /api/featured/:profileId/:templateId
+  app.put("/api/featured/:profileId/:templateId", function(req, res) {
+    db.Featured.update(
+      req.body,
+      {
+        where: {
+          profileId: req.body.profileId,
+          templateId: req.body.templateId
+        }
+      }).then(function(dbFeatured) {
+      res.json(dbFeatured);
+    });
+  });
+  // **********
+
+
+  //*************************************************
+  //                DELETE ROUTES
+  //*************************************************
+
+  // Remove Featured: DELETE /api/featured/:profileId/:templateId
+  app.delete("/api/featured/:profileId/:templateId", function(req, res) {
+    db.Featured.destroy({
+       where: { 
+         profileId: req.params.profileId,
+         templateId: req.params.templateId
+        } 
+      }).then(function(dbFeatured) {
+      res.json(dbFeatured);
+    });
+  });
+
+  // Delete template/profile: DELETE /api/[template/profile]/:id
+  app.delete("/api/profile/:id", function(req, res) {
+    db.Profile.destroy({
+       where: { 
+         id: req.params.id
+        } 
+      }).then(function(dbProfile) {
+      res.json(dbProfile);
+    });
+  });
+
+  // Delete template/profile: DELETE /api/[template/profile]/:id
+  app.delete("/api/template/:id", function(req, res) {
+    db.Featured.destroy({
+       where: { 
+         id: req.params.id
+        } 
+      }).then(function(dbTemplate) {
+      res.json(dbTemplate);
     });
   });
 };
