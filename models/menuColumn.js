@@ -16,7 +16,8 @@ module.exports = function (sequelize, DataTypes) {
     item_7: DataTypes.STRING,
     price_7: DataTypes.FLOAT,
     item_8: DataTypes.STRING,
-    price_8: DataTypes.FLOAT
+    price_8: DataTypes.FLOAT,
+    isAnimated: DataTypes.INTEGER
   });
 
   MenuColumn.associate = (models) => {

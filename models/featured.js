@@ -2,7 +2,8 @@ module.exports = function(sequelize, DataTypes) {
   let Featured = sequelize.define("Featured", {
     header: DataTypes.STRING,
     body: DataTypes.STRING,
-    price: DataTypes.FLOAT
+    price: DataTypes.FLOAT,
+    isAnimated: DataTypes.INTEGER
   });
 
   Featured.associate = (models) => {
