@@ -82,19 +82,19 @@ a li:hover{
 
 .admin-content-container {
   width: 80%;
+  height: 80%;
   background-color: var(--admin-content-bg-color);
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
 .admin-preview-board-header {
   display: flex;
   color: black;
   margin-bottom: 20px;
-  width: 80%;
+  width: 1440px;
   justify-content: space-between;
   align-items: flex-end;
 }
@@ -110,8 +110,8 @@ a li:hover{
 }
 
 .admin-preview-board {
-  width: 80%;
-  height: 80%;
+  width: 1440px;
+  /* height: 80%; */
   display: flex;
   flex-wrap: wrap;
   border: 8px solid #ffffff;
@@ -120,21 +120,21 @@ a li:hover{
 
 .admin-preview-board-featured {
   background-color: var(--preview-board-featured-bg-color);
-  width: 60%;
-  height: 30%;
+  width: 752px;
+  height: 227px;
   border: 1px solid #ffffff;
 }
 
 .admin-preview-board-sidebar {
   background-color: var(--preview-board-sidebar-bg-color);
-  width: 40%;
-  height: 30%;
+  width: 474px;
+  height: 228px;
   border: 2px solid #ffffff;
 }
 
 .admin-preview-board-menu {
   background-color: var(--preview-board-menu-bg-color);
-  width: 25%;
-  height: 70%;
+  width: 305px;
+  height: 460px;
   border: 2px solid #ffffff;
 }
