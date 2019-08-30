@@ -81,7 +81,7 @@ a li:hover{
 }
 
 .admin-content-container {
-  width: 80%;
+  width: 1440px;
   height: 80%;
   background-color: var(--admin-content-bg-color);
   display: flex;
@@ -94,7 +94,7 @@ a li:hover{
   display: flex;
   color: black;
   margin-bottom: 20px;
-  width: 1440px;
+  width: 100%;
   justify-content: space-between;
   align-items: flex-end;
 }
