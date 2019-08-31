@@ -80,6 +80,14 @@ li {
   background-color:var(--admin-nav-item-bg-hover);
 }
 
+.admin-nav-item:hover:before {
+  content: "";
+  width: 5px;
+  height: 100%;
+  background-color: white;
+  margin-left: -5px;
+}
+
 .admin-nav-item .nav-icon {
   margin: 0 10px 0 10px;
 }
@@ -90,6 +98,7 @@ li {
   color: #ecf0f1;
   text-decoration: none;  
 }
+
 
 /* ADMIN CONTENT CONTAINER */
 .admin-content-container {
