@@ -35,7 +35,7 @@ module.exports = function (app) {
   app.get("/api/featured/:profileId", function (req, res) {
     db.Featured.findAll({
       where: {
-        profileId: req.params.profileId
+        id: req.params.profileId
       },
       include: [{
         model: db.ImgTable
