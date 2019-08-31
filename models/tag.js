@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
   let Tag = sequelize.define("Tag", {
-    name: DataTypes.STRING
+    tag_name: DataTypes.STRING
   },{
     timestamps: false
   });

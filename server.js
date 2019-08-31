@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === "test") {
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
-    require('./photoScraper')('./public/img');
+    require('./photoScraper')('./public/imgs');
     app.listen(PORT, function() {
         console.log(
             "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",

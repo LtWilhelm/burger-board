@@ -7,8 +7,8 @@ module.exports = function (app) {
   //*************************************************
 
   // Load Images
-  app.get('/api/images', function(req, res){
-    db.ImgTable.findAll({}).then(function(dbImg){
+  app.get('/api/images', function (req, res) {
+    db.ImgTable.findAll({}).then(function (dbImg) {
       res.json(dbImg);
     });
   });
@@ -97,9 +97,9 @@ module.exports = function (app) {
   app.post("/api/profiles/create", function (req, res) {
     db.Profile.create(req.body).then(function (dbProfile) {
       for (let i = 0; i < 4; i++) {
-        db.MenuColumn.create({ProfileId: dbProfile.id});
+        db.MenuColumn.create({ ProfileId: dbProfile.id });
       }
-      db.SideBar.create({sidebarId: dbProfile.id});
+      db.SideBar.create({ sidebarId: dbProfile.id });
       res.json(dbProfile);
     });
   });
@@ -120,15 +120,12 @@ module.exports = function (app) {
 
   // Edit Featured: load templates, POST /api/featured/:profileId/:templateId
   app.post("/api/featured/:profileId/:templateId", function (req, res) {
-    db.Featured.create(
-      req.body,
-      {
-        where: {
-          id: [req.body.profileId, req.body.templateId]
-        }
-      }).then(function (dbFeatured) {
-        res.json(dbFeatured);
-      });
+    db.ProfileFeatured.create({
+      ProfileId: req.params.profileId,
+      FeaturedId: req.params.templateId
+    }).then(function (dbFeatured) {
+      res.json(dbFeatured);
+    });
   });
 
   //*************************************************

@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
   let ImgTable = sequelize.define("ImgTable", {
-    name: DataTypes.STRING,
+    img_name: DataTypes.STRING,
     img_path: {
       allowNull: false,
       unique: true,
