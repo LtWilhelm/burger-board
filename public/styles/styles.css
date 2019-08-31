@@ -156,3 +156,9 @@ h2 {
   height: 460px;
   border: 1px solid #ffffff;
 }
+
+/* MODAL STYLES */
+
+.modal{
+  color: black;
+}
