@@ -3,10 +3,12 @@ module.exports = function (sequelize, DataTypes) {
     header: DataTypes.STRING,
     body: DataTypes.STRING,
     isAnimated: DataTypes.INTEGER
+  },{
+    timestamps: false
   });
 
   SideBar.associate = (models) => {
-    models.SideBar.belongsTo(models.Profile);
+    models.SideBar.belongsTo(models.Profile, {as: 'sidebar'});
   }
 
   return SideBar;
