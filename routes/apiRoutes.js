@@ -54,6 +54,7 @@ module.exports = function (app) {
 
   // Load Display: GET /api/display/:profileId
   app.get("/api/display/:profileId", function (req, res) {
+    let response;
     db.Profile.findOne({
       where: {
         id: req.params.profileId
@@ -63,15 +64,24 @@ module.exports = function (app) {
         as: 'menu'
       },
       {
-        model: db.Featured,
-        as: 'featured'
-      },
-      {
         model: db.SideBar,
         as: 'sidebar'
       }]
     }).then(function (dbDisplay) {
-      res.json(dbDisplay);
+      response = dbDisplay;
+      // res.json(response);
+      db.ProfileFeatured.findAll({
+        where: {
+          ProfileID: req.params.profileId
+        },
+        include: {
+          model: db.Featured
+        }
+      }).then(dbFeatured => {
+        // console.log(dbFeatured)
+        response.featured = dbFeatured;
+        res.json({Profile: dbDisplay, Featured: dbFeatured});
+      });
     });
   });
 
