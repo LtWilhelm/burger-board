@@ -6,6 +6,13 @@ module.exports = function (app) {
   //                   GET ROUTES
   //*************************************************
 
+  // Load Images
+  app.get('/api/images', function (req, res) {
+    db.ImgTable.findAll({}).then(function (dbImg) {
+      res.json(dbImg);
+    });
+  });
+
   // Load Profiles: GET /api/profiles
   app.get("/api/profiles", function (req, res) {
     db.Profile.findAll({}).then(function (dbProfile) {
@@ -35,7 +42,7 @@ module.exports = function (app) {
   app.get("/api/featured/:profileId", function (req, res) {
     db.Featured.findAll({
       where: {
-        profileId: req.params.profileId
+        id: req.params.profileId
       },
       include: [{
         model: db.ImgTable
@@ -47,21 +54,34 @@ module.exports = function (app) {
 
   // Load Display: GET /api/display/:profileId
   app.get("/api/display/:profileId", function (req, res) {
-    db.Profile.findAll({
+    let response;
+    db.Profile.findOne({
       where: {
-        profileId: req.params.profileId
+        id: req.params.profileId
       },
       include: [{
-        model: db.MenuColumn
+        model: db.MenuColumn,
+        as: 'menu'
       },
       {
-        model: db.Featured
-      },
-      {
-        model: db.SideBar
+        model: db.SideBar,
+        as: 'sidebar'
       }]
     }).then(function (dbDisplay) {
-      res.json(dbDisplay);
+      response = dbDisplay;
+      // res.json(response);
+      db.ProfileFeatured.findAll({
+        where: {
+          ProfileID: req.params.profileId
+        },
+        include: {
+          model: db.Featured
+        }
+      }).then(dbFeatured => {
+        // console.log(dbFeatured)
+        response.featured = dbFeatured;
+        res.json({Profile: dbDisplay, Featured: dbFeatured});
+      });
     });
   });
 
@@ -86,6 +106,10 @@ module.exports = function (app) {
   // New Profile: POST /api/profile/create
   app.post("/api/profiles/create", function (req, res) {
     db.Profile.create(req.body).then(function (dbProfile) {
+      for (let i = 0; i < 4; i++) {
+        db.MenuColumn.create({ ProfileId: dbProfile.id });
+      }
+      db.SideBar.create({ sidebarId: dbProfile.id });
       res.json(dbProfile);
     });
   });
@@ -106,15 +130,12 @@ module.exports = function (app) {
 
   // Edit Featured: load templates, POST /api/featured/:profileId/:templateId
   app.post("/api/featured/:profileId/:templateId", function (req, res) {
-    db.Featured.create(
-      req.body,
-      {
-        where: {
-          id: [req.body.profileId, req.body.templateId]
-        }
-      }).then(function (dbFeatured) {
-        res.json(dbFeatured);
-      });
+    db.ProfileFeatured.create({
+      ProfileId: req.params.profileId,
+      FeaturedId: req.params.templateId
+    }).then(function (dbFeatured) {
+      res.json(dbFeatured);
+    });
   });
 
   //*************************************************
