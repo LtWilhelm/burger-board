@@ -11,10 +11,6 @@
         </div>
 
         <div class="admin-nav-item">
-            <img class="nav-icon" src="/icons/icon_edit.png"><a href="#modal-edit-profile" rel="modal:open">EDIT
-                PROFILE</a>
-        </div>
-        <div class="admin-nav-item">
             <img class="nav-icon" src="/icons/icon_load.png"><a href="#modal-load-profile" rel="modal:open">LOAD
                 PROFILE</a>
         </div>
@@ -44,24 +40,26 @@
 
     <!-- Main Content -->
     <div class="admin-content-container">
+ 
+        <!-- Board Preview Header -->
         <div class="admin-board-header">
-            <div>
-                <h1>PROFILE: <b>BREAKFAST</b></h1>
+
+            <!-- INLINE PROFILE EDITING -->
+            <!-- Edit -->
+            <div id="inline-edit">
+                <h1>PROFILE: <b>BREAKFAST</b><button onclick="app_profile_inline_edit()"class="btn-profile-edit">EDIT</button></h1>
             </div>
+            <!-- Save/Cancel -->
+            <div id="inline-save">
+                <h1>PROFILE: <input class="inline-edit-field" value="BREAKFAST"><button onclick="app_profile_inline_save()" class="btn-profile-save">SAVE</button><button class="btn-profile-save-cancel">CANCEL</button></h1>
+            </div>
+
             <div>
                 <button class="btn-preview">Preview Board</button>
             </div>
         </div>
 
-        <!-- <div class="admin-board-container">
-            <div class="ab-featured">Featured</div>
-            <div class="ab-sidebar">Sidebar</div>
-            <div class="ab-menu">Menu</div>
-            <div class="ab-menu">Menu</div>
-            <div class="ab-menu">Menu</div>
-            <div class="ab-menu">Menu</div>
-        </div> -->
-
+        <!-- Board Preview -->
         <div class="admin_board_container">
             <div class="ab_featured flex-center hover-cell">Featured</div>
             <div class="ab_sidebar flex-center hover-cell">Sidebar</div>
@@ -70,9 +68,14 @@
             <div class="ab_menu_3 flex-center hover-cell">Menu</div>
             <div class="ab_menu_4 flex-center hover-cell">Menu</div>
         </div>
+
+        <!-- Board Footer -->
+
+        <div><button class="btn-delete">DELETE BOARD</button></div>>
     </div>
     <!-- End of Admin Main Container -->
 </div>
 
+<script src="/js/app.js"></script>
 <!-- Ejs Include For Modals -->
 <% include ../partials/modals %>
