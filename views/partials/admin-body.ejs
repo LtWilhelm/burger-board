@@ -4,24 +4,29 @@
     <!-- Admin Navigation Sidebar -->
     <div class="admin-nav-container">
         <h1>BOARD PROFILES</h1>
-        
+
         <div class="admin-nav-item">
-            <img class="nav-icon" src="/icons/icon_grid.png"><a href="#modal-new-profile" rel="modal:open">NEW PROFILE</a>
+            <img class="nav-icon" src="/icons/icon_grid.png"><a href="#modal-new-profile" rel="modal:open">NEW
+                PROFILE</a>
         </div>
-        
+
         <div class="admin-nav-item">
-            <img class="nav-icon" src="/icons/icon_edit.png"><a href="#modal-edit-profile" rel="modal:open">EDIT PROFILE</a>
+            <img class="nav-icon" src="/icons/icon_edit.png"><a href="#modal-edit-profile" rel="modal:open">EDIT
+                PROFILE</a>
         </div>
         <div class="admin-nav-item">
-            <img class="nav-icon" src="/icons/icon_load.png"><a href="#modal-load-profile" rel="modal:open">LOAD PROFILE</a>
+            <img class="nav-icon" src="/icons/icon_load.png"><a href="#modal-load-profile" rel="modal:open">LOAD
+                PROFILE</a>
         </div>
 
         <h1>FEATURE TEMPLATES</h1>
         <div class="admin-nav-item">
-            <img class="nav-icon" src="/icons/icon_grid.png"><a href="#modal-new-template" rel="modal:open">NEW TEMPLATE</a>
+            <img class="nav-icon" src="/icons/icon_grid.png"><a href="#modal-new-template" rel="modal:open">NEW
+                TEMPLATE</a>
         </div>
         <div class="admin-nav-item">
-            <img class="nav-icon" src="/icons/icon_edit.png"><a href="#modal-edit-template" rel="modal:open">EDIT TEMPLATE</a>
+            <img class="nav-icon" src="/icons/icon_edit.png"><a href="#modal-edit-template" rel="modal:open">EDIT
+                TEMPLATE</a>
         </div>
 
         <h1>IMAGE GALLERY</h1>
@@ -29,7 +34,8 @@
             <img class="nav-icon" src="/icons/icon_grid.png"><a href="#modal-new-image" rel="modal:open">NEW IMAGE</a>
         </div>
         <div class="admin-nav-item">
-            <img class="nav-icon" src="/icons/icon_edit.png"><a href="#modal-edit-image" rel="modal:open">EDIT IMAGES</a>
+            <img class="nav-icon" src="/icons/icon_edit.png"><a href="#modal-edit-image" rel="modal:open">EDIT
+                IMAGES</a>
         </div>
 
         <!-- End of Admin Nav -->
@@ -39,18 +45,34 @@
     <!-- Main Content -->
     <div class="admin-content-container">
         <div class="admin-board-header">
-            Header
+            <div>
+                <h1>PROFILE: <b>BREAKFAST</b></h1>
+            </div>
+            <div>
+                <button class="btn-preview">Preview Board</button>
+            </div>
         </div>
 
-        <div class="admin-board-container">
-            CONTENT
+        <!-- <div class="admin-board-container">
+            <div class="ab-featured">Featured</div>
+            <div class="ab-sidebar">Sidebar</div>
+            <div class="ab-menu">Menu</div>
+            <div class="ab-menu">Menu</div>
+            <div class="ab-menu">Menu</div>
+            <div class="ab-menu">Menu</div>
+        </div> -->
+
+        <div class="admin_board_container">
+            <div class="ab_featured flex-center hover-cell">Featured</div>
+            <div class="ab_sidebar flex-center hover-cell">Sidebar</div>
+            <div class="ab_menu_1 flex-center hover-cell">Menu</div>
+            <div class="ab_menu_2 flex-center hover-cell">Menu</div>
+            <div class="ab_menu_3 flex-center hover-cell">Menu</div>
+            <div class="ab_menu_4 flex-center hover-cell">Menu</div>
         </div>
     </div>
     <!-- End of Admin Main Container -->
 </div>
 
 <!-- Ejs Include For Modals -->
-
 <% include ../partials/modals %>
-
-<!-- End of Modal Include -->
