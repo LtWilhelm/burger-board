@@ -1,4 +1,11 @@
-var db = require("../models");
+const db = require("../models");
+const fs = require('fs')
+const multer = require('multer');
+const path = require('path');
+
+const upload = multer({
+  dest: '../public/imgs/uploaded'
+})
 
 module.exports = function (app) {
 
@@ -80,7 +87,7 @@ module.exports = function (app) {
       }).then(dbFeatured => {
         // console.log(dbFeatured)
         response.featured = dbFeatured;
-        res.json({Profile: dbDisplay, Featured: dbFeatured});
+        res.json({ Profile: dbDisplay, Featured: dbFeatured });
       });
     });
   });
@@ -242,5 +249,42 @@ module.exports = function (app) {
     }).then(function (dbTemplate) {
       res.json(dbTemplate);
     });
+  });
+
+  // **********************************************
+  // Uploader
+  // **********************************************
+
+  app.post('/upload', upload.single("upload"), function (req, res) {
+    const tempPath = req.file.path;
+    const targetPath = path.join(__dirname, '../public/imgs/uploaded/', req.file.originalname);
+
+    switch (path.extname(req.file.originalname).toLowerCase()) {
+      case '.png':
+      case '.jpg':
+      case '.jpeg':
+      case '.tiff':
+        fs.rename(tempPath, targetPath, err => {
+          if (err) throw err;
+
+          res
+            .status(200)
+            .contentType("text/plain")
+            .end("File uploaded!");
+        });
+        break;
+
+      default:
+        fs.unlink(tempPath, err => {
+          if (err) throw err;
+
+          res
+            .status(403)
+            .contentType("text/plain")
+            .end("Only image files are allowed!");
+        });
+        break;
+    }
+    require('../photoScraper')('./public/imgs');
   });
 };

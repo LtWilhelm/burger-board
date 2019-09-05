@@ -1,13 +1,14 @@
 require("dotenv").config();
-var express = require("express");
+const express = require("express");
 const ejs = require("ejs");
-var db = require("./models");
+const db = require("./models");
+const bodyParser = require('body-parser');
 
-var app = express();
-var PORT = process.env.PORT || 8080;
+const app = express();
+const PORT = process.env.PORT || 8080;
 
 // Middleware
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
