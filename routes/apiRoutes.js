@@ -61,7 +61,6 @@ module.exports = function (app) {
 
   // Load Display: GET /api/display/:profileId
   app.get("/api/display/:profileId", function (req, res) {
-    let response;
     db.Profile.findOne({
       where: {
         id: req.params.profileId
@@ -86,7 +85,6 @@ module.exports = function (app) {
         }
       }).then(dbFeatured => {
         // console.log(dbFeatured)
-        response.featured = dbFeatured;
         res.json({ Profile: dbDisplay, Featured: dbFeatured });
       });
     });
