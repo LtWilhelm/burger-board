@@ -257,7 +257,15 @@ module.exports = function (app) {
 
   app.post('/upload', upload.single("upload"), function (req, res) {
     const tempPath = req.file.path;
-    const targetPath = path.join(__dirname, '../public/imgs/uploaded/', req.file.originalname);
+    let targetPath = path.join(__dirname, '../public/imgs/uploaded/', req.file.originalname);
+
+    const extension = path.extname(req.file.originalname);
+
+    if (fs.existsSync(targetPath)) {
+      const d = new Date();
+      const timeStamp = ("at" + d.getHours() + d.getMinutes() + d.getSeconds());
+      targetPath = targetPath.slice(0, targetPath.indexOf(extension)) + timeStamp + extension;
+    }
 
     switch (path.extname(req.file.originalname).toLowerCase()) {
       case '.png':

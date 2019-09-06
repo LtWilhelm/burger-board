@@ -34,9 +34,10 @@ module.exports = function (app) {
     // temp uploader page for testing
     app.get('/uploader', (req, res) => {
         res.sendFile(path.join(__dirname, '../uploader.html'))
+    });
 
     // Render 404 page for any unmatched routes
-    // app.get("*", function(req, res) {
-    //     res.render("404");
-    // });
+    app.get("*", function(req, res) {
+        res.render("404");
+    });
 };
