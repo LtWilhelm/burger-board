@@ -1,4 +1,5 @@
-var db = require("../models");
+const db = require("../models");
+const path = require("path");
 
 module.exports = function (app) {
     // Load index page
@@ -24,6 +25,10 @@ module.exports = function (app) {
             });
         });
     });
+
+    // temp uploader page for testing
+    app.get('/uploader', (req, res) => {
+        res.sendFile(path.join(__dirname, '../uploader.html'))
 
     // Render 404 page for any unmatched routes
     app.get("*", function (req, res) {
