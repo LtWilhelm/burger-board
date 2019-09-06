@@ -21,7 +21,7 @@ function readFiles(directory) {
                 let imgPath = (directory + file.name).slice(8);
                 // console.log(directory + file.name);
                 db.ImgTable.create({
-                    name: file.name,
+                    img_name: file.name,
                     img_path: imgPath
                 }).then(res => {
                     console.log('successfully added '+ file.name)
