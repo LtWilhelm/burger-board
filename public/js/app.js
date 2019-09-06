@@ -12,6 +12,8 @@
 app_profiles_get();
 app_images_get();
 
+app_template_add_to_feature();
+
 //app_profile_get(1);
 
 function app_profiles_get() {
@@ -43,11 +45,33 @@ function app_images_get() {
         // Loop through array and load options
         data.forEach(function (imgData) {
             console.log(imgData.img_path);
-            myHTML += `<option name="${imgData.id}">${imgData.img_path}</option>`;
+            myHTML += `<option value="${imgData.id}">${imgData.img_name}</option>`;
         });
 
-        $(".list-images-options").html(myHTML);
+        $(".list-images-options").html(myHTML); // Populates all elemets in every modal
 
+    });
+}
+
+function app_template_create() {
+
+    let objData = {};
+    objData.template_name = $("#template-name").val();
+    objData.template_body = $("#template-body-text").val();
+    objData.backgroundImgId = parseInt($("#template-image-choice").val());
+
+    console.log(objData.backgroundImgId);
+
+    $.post('/api/template/create', objData, function(packageGet) {
+        console.log(packageGet);
+    });
+
+}
+
+function app_template_add_to_feature() {
+
+    $.post('/api/featured/1/2', function(packageGet) {
+        console.log(packageGet);
     });
 }
 
@@ -68,7 +92,13 @@ function app_profile_inline_save() {
 // Create Profile
 function app_profile_create() {
 
+    let inputVal = $('#profile-create-name-field').val();
+    console.log(inputVal);
+    console.log($('#profile-create-name-field').val());
+
     let objData = {}
+
+
     objData.profile_name = $('#profile-create-name-field').val();
 
     $.post('/api/profiles/create', objData, function (packageGet) {

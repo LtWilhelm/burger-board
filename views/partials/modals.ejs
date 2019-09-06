@@ -6,8 +6,8 @@
 
     <div class="modal-box">
         <h1>Create a new boardprofile:</h1>
-        Profile Name: <input id="profile-create-name-field" type="input">
-        <button type="submit" id="profile-name" onclick="app_profile_create()">Submit</button>
+        Profile Name: <input id="profile-create-name-field" name="test" type="input">
+        <button type="submit" onclick="app_profile_create()">Submit</button>
     </div>
 
 </div>
@@ -28,14 +28,14 @@
 <div id="modal-new-template" class="modal">
 
     <h1>New Template</h1>
-    <p>Template Name: <input id="profile-create-name-field" type="input"></p>
-    <p>Body Text: <input id="profile-create-name-field" type="input"></p>
+    <p>Template Name: <input id="template-name" type="input"></p>
+    <p>Body Text: <input id="template-body-text" type="input"></p>
     <p>
-        Image: <select></select>
+        Image: <select id="template-image-choice" class="list-images-options"></select>
     </p>
 
     </select>
-    <button type="submit" id="profile-name" onclick="app_profile_create()">Submit</button>
+    <button type="submit" id="profile-name" onclick="app_template_create()">Submit</button>
 
 </div>
 
