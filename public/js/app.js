@@ -9,13 +9,20 @@
 
 // LOAD DATA INTO MODALS
 
+// Load List of Profiles
 app_profiles_get();
+
+// Load list of images
 app_images_get();
 
-app_template_add_to_feature();
+//app_template_add_to_feature();
 
 //app_profile_get(1);
 
+// Load Template list
+function app_templates_get() {
+    
+}
 function app_profiles_get() {
     $.get('/api/profiles', function (data) {
 
