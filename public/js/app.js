@@ -9,6 +9,10 @@
 
 // LOAD DATA INTO MODALS
 
+app_profiles_get();
+
+app_profile_get(1);
+
 function app_profiles_get() {
     $.get('/api/profiles', function (data) {
 
@@ -24,7 +28,11 @@ function app_profiles_get() {
 }
 
 
-app_profiles_get();
+function app_profile_get(profileID) {
+    $.get('/api/display/1', function (data) {
+        console.log(data);
+    });
+}
 
 // Inline Editing
 function app_profile_inline_edit() {
@@ -43,35 +51,12 @@ function app_profile_inline_save() {
 // Create Profile
 function app_profile_create() {
 
-    let profileName = $('#input-profile-name').val();
+    let objData = {}
+    objData.profile_name = $('#profile-create-name-field').val();
 
-    console.log('Test');
+    $.modal.close();
 
-    $.post('/api/profiles/create', profileName, function (packageGet) {
-
-        // Failure
-        if (!packageGet) {
-            // Failure!
-            console.log(packageGet);
-        }
-
-        // Success
-        if (packageGet) {
-            // Failure!
-            console.log(packageGet);
-        }
-    });
-}
-
-
-// Create Profile
-function app_profile_create() {
-
-    let profileName = $('#input-profile-name').val();
-
-    console.log('Test');
-
-    $.post('/api/profiles/create', profileName, function (packageGet) {
+    $.post('/api/profiles/create', objData, function (packageGet) {
 
         // Failure
         if (!packageGet) {
@@ -83,6 +68,7 @@ function app_profile_create() {
         if (packageGet) {
             // Failure!
             console.log(packageGet);
+            console.log("SUCCESS!");
         }
     });
 }

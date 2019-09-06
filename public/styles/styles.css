@@ -149,7 +149,7 @@ li {
 }
 
 
-.admin-board-header {
+.admin-board-header, .admin-board-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -157,6 +157,10 @@ li {
   padding: 0 0 20px 0;
   font-size: 30px;
   color: black;
+}
+
+.admin-board-footer {
+  justify-content: flex-end;
 }
 
 .admin-board-header h1 {
@@ -199,7 +203,7 @@ li {
   font-size: 12px;
   font-weight: bold;
   background-color: #282828;
-  color: #8a1d13;
+  color: #af2619;
   border-radius: 5px;
   border: none;
   padding: 10px 10px 10px 10px;
@@ -219,6 +223,7 @@ li {
 .inline-edit-field:focus {
   outline: none;
 }
+
 .inline-edit-field:hover {
 
 }
@@ -228,12 +233,15 @@ li {
   cursor: pointer;
 }
 
+/* ADMIN BOARD GRID */
 .admin_board_container {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 200px 400px;
-  grid-template-areas: "Featured Featured Featured Featured Featured Sidebar Sidebar Sidebar" "Menu-1 Menu-1 Menu-2 Menu-2 Menu-3 Menu-3 Menu-4 Menu-4" "Menu-1 Menu-1 Menu-2 Menu-2 Menu-3 Menu-3 Menu-4 Menu-4";
+  grid-template-areas:  "Featured Featured Featured Featured Featured Sidebar Sidebar Sidebar" 
+                        "Menu-1 Menu-1 Menu-2 Menu-2 Menu-3 Menu-3 Menu-4 Menu-4" 
+                        "Menu-1 Menu-1 Menu-2 Menu-2 Menu-3 Menu-3 Menu-4 Menu-4";
   width: 1200px;
   height: auto;
   background-color: white;

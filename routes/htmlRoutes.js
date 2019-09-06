@@ -14,12 +14,7 @@ module.exports = function (app) {
 
     // Load index page
     app.get("/admin", function (req, res) {
-        db.Profile.findAll({}).then(function (dbExamples) {
-            res.render("pages/admin", {
-                msg: "Welcome!",
-                examples: dbExamples
-            });
-        });
+        res.render("pages/admin");
     });
 
     // Load example page and pass in an example by id
@@ -36,7 +31,7 @@ module.exports = function (app) {
         res.sendFile(path.join(__dirname, '../uploader.html'))
 
     // Render 404 page for any unmatched routes
-    // app.get("*", function(req, res) {
-    //     res.render("404");
-    // });
+    app.get("*", function (req, res) {
+        res.render("pages/404");
+    });
 };
