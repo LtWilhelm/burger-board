@@ -21,6 +21,7 @@ html, body {
   height: 100%;
   font-family: 'Roboto', sans-serif;
   color: var(--text-global);
+  overflow: hidden;
 }
 
 b {
@@ -325,4 +326,36 @@ li {
   border: none;
   padding: 10px 10px 10px 10px;
   margin: 5px 0 5px 0;
+}
+
+
+/* ---- BOARD ---- */
+
+.board-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: max-content;
+}
+
+.bc-featured {
+  width: 1200px;
+  height: 416px;
+  background-image: url('/imgs/uploaded/f_burger.png');
+  box-shadow:inset 0px 0px 0px 2px #ffffff;
+
+}
+
+.bc-sidebar {
+  width: 720px;
+  height: 416px;
+  background-image: url('/imgs/uploaded/s_drink.png');
+  box-shadow:inset 0px 0px 0px 2px #ffffff;
+}
+
+.bc-menu {
+  width: 480px;
+  height: 664px;
+  background-color: red;
+  box-shadow:inset 0px 0px 0px 2px #ffffff;
 }

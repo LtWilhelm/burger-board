@@ -10,10 +10,12 @@
 // LOAD DATA INTO MODALS
 
 // Load List of Profiles
-app_profiles_get();
+//app_profiles_get();
 
 // Load list of images
-app_images_get();
+//app_images_get();
+
+//app_templates_get();
 
 //app_template_add_to_feature();
 
@@ -21,8 +23,18 @@ app_images_get();
 
 // Load Template list
 function app_templates_get() {
-    
+    $.get('/api/templates', function (data) {
+        let myHTML = ``;
+
+        // Loop through array and load options
+        data.forEach(function (templateData) {
+            myHTML += `<option name="${templateData.id}">${templateData.template_name}</option>`;
+        });
+
+        $('.list-templates').html(myHTML);
+    });
 }
+
 function app_profiles_get() {
     $.get('/api/profiles', function (data) {
 
@@ -69,7 +81,7 @@ function app_template_create() {
 
     console.log(objData.backgroundImgId);
 
-    $.post('/api/template/create', objData, function(packageGet) {
+    $.post('/api/template/create', objData, function (packageGet) {
         console.log(packageGet);
     });
 
@@ -77,7 +89,7 @@ function app_template_create() {
 
 function app_template_add_to_feature() {
 
-    $.post('/api/featured/1/2', function(packageGet) {
+    $.post('/api/featured/1/2', function (packageGet) {
         console.log(packageGet);
     });
 }
