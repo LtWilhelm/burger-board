@@ -1,8 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
   let Featured = sequelize.define("Featured", {
-    header: DataTypes.STRING,
-    body: DataTypes.STRING,
-    price: DataTypes.FLOAT,
+    template_name: DataTypes.STRING,
+    template_header: DataTypes.STRING,
+    template_body: DataTypes.STRING,
+    template_price: DataTypes.FLOAT,
     isAnimated: DataTypes.INTEGER
   },{
     timestamps: false

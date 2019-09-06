@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
   let SideBar = sequelize.define("SideBar", {
-    header: DataTypes.STRING,
+    sidebar_header: DataTypes.STRING,
     body: DataTypes.STRING,
     isAnimated: DataTypes.INTEGER
   },{

@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
   let MenuColumn = sequelize.define("MenuColumn", {
-    header: DataTypes.STRING,
+    menu_header: DataTypes.STRING,
     item_1: DataTypes.STRING,
     price_1: DataTypes.FLOAT,
     item_2: DataTypes.STRING,
