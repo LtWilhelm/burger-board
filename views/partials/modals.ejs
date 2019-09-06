@@ -16,10 +16,10 @@
 <div id="modal-load-profile" class="modal">
 
     <div class="modal-box">
-    <h1>Load Profile</h1>
-    <select id="list-profile-options">
+        <h1>Load Profile</h1>
+        <select id="list-profile-options">
 
-    </select>
+        </select>
     </div>
 </div>
 
@@ -28,6 +28,15 @@
 <div id="modal-new-template" class="modal">
 
     <h1>New Template</h1>
+    <p>Template Name: <input id="profile-create-name-field" type="input"></p>
+    <p>Body Text: <input id="profile-create-name-field" type="input"></p>
+    <p>
+        Image: <select></select>
+    </p>
+
+    </select>
+    <button type="submit" id="profile-name" onclick="app_profile_create()">Submit</button>
+
 </div>
 
 
@@ -44,16 +53,17 @@
 <div id="modal-new-image" class="modal">
 
     <h1>New Image</h1>
-    <br>
-    Image URL: <input type="text" name="image-url">
-    <button type="submit" id="image_url">Submit</button>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="upload">
+        <button type="submit" id="image_url">Submit</button>
+    </form>
 </div>
 
 <!-- IMAGE: EDIT -->
 <div id="modal-edit-image" class="modal">
 
     <h1>Edit Image</h1>
-    <select>
+    <select class="list-images-options">
 
     </select>
 </div>

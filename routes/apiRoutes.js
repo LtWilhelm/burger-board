@@ -262,6 +262,7 @@ module.exports = function (app) {
       case '.jpg':
       case '.jpeg':
       case '.tiff':
+      case '.svg':
         fs.rename(tempPath, targetPath, err => {
           if (err) throw err;
 
