@@ -8,7 +8,8 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   SideBar.associate = (models) => {
-    models.SideBar.belongsTo(models.Profile, {as: 'sidebar'});
+    models.SideBar.belongsTo(models.Profile);
+    models.SideBar.belongsTo(models.ImgTable, {as: 'background_img'});
   }
 
   return SideBar;
