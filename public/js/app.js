@@ -5,6 +5,25 @@
 // --- Payton Burr
 // --- Michael Miller
 
+
+// CONFIG
+$.put = function (url, data, callback, type) {
+
+    if ($.isFunction(data)) {
+        type = type || callback,
+            callback = data,
+            data = {}
+    }
+
+    return $.ajax({
+        url: url,
+        type: 'PUT',
+        success: callback,
+        data: data,
+        contentType: type
+    });
+}
+
 // Begin Application
 // Load Amind Board
 app_load_board();
@@ -44,6 +63,13 @@ function app_load_board(profileID) {
 function app_sidebar_get() {
     $.get(`/api/display/${localProfile.currentProfile}`, function (data) {
         let sideBar = data.Profile.sidebar;
+
+        // Update Div
+        let myHTML = ``; 
+        myHTML += `<p>${sideBar.sidebar_header}</p>`;
+        myHTML += `<p>${sideBar.backgroundImgId}`;
+
+        $('.ab_sidebar').append(myHTML)
     });
 }
 
@@ -51,7 +77,28 @@ function app_menus_get() {
     $.get(`/api/display/${localProfile.currentProfile}`, function (data) {
         let menuArray = data.Profile.menu;
 
-        console.log(menuArray.length)
+        menuArray.forEach(function(data, index){
+            let myHTML = ``;
+            myHTML += `
+                <h1>${data.menu_header}</h1>
+                <div><p>Item: ${data.item_1}</p>
+                     <p>Price: ${data.price_1}</p>
+                </div>
+                <div><p>Item: ${data.item_2}</p>
+                     <p>Price: ${data.price_2}</p>
+                </div>
+                <div><p>Item: ${data.item_2}</p>
+                     <p>Price: ${data.price_2}</p>
+                </div>
+                <div><p>Item: ${data.item_2}</p>
+                     <p>Price: ${data.price_2}</p>
+                </div>
+                <div><p>Item: ${data.item_2}</p>
+                     <p>Price: ${data.price_2}</p>
+                </div>
+            `;
+            $('.ab_menu_' + (index+ 1)).append(myHTML);
+        });
     });
 }
 // Load Template list
@@ -190,3 +237,24 @@ function app_profile_create() {
         }
     });
 }
+
+function app_sidebar_update() {
+
+    let obj = {};
+
+    obj.sidebar_header = $('#sidebar-header-field').val();
+    obj.backgroundImgId = $('#sidebar-image-choice').val();
+    obj.sideBarId = 1;
+
+    $.ajax({
+        url: '/api/sidebar/1',
+        type: 'PUT',
+        data: obj,
+        success: function (data) {
+            alert('Load was performed.');
+        }
+    });
+}
+
+
+// JQUERY FIX

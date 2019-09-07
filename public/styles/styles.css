@@ -286,22 +286,29 @@ li {
 }
 
 .ab_menu_1 {
+  flex-direction: column;
   background-color: #2b80b9;
   grid-area: Menu-1;
 }
 
 .ab_menu_2 {
   grid-area: Menu-2;
+  flex-direction: column;
+
   background-color: #2b80b9;
 }
 
 .ab_menu_3 {
   grid-area: Menu-3;
+  flex-direction: column;
+
   background-color: #2b80b9;
 }
 
 .ab_menu_4 {
   grid-area: Menu-4;
+  flex-direction: column;
+
   background-color: #2b80b9;
 }
 

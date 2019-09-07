@@ -8,9 +8,10 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // Middleware
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+//app.use(express.json());
 app.use(express.static("public"));
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 
 //EJS
 app.set('view engine', 'ejs');

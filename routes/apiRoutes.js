@@ -188,6 +188,8 @@ module.exports = function (app) {
 
   // Edit Sidebar: PUT /api/sidebar/:profileId/:sideBarId
   app.put("/api/sidebar/:sideBarId", function (req, res) {
+
+    console.log(req.body);
     db.SideBar.update(
       req.body,
       {
