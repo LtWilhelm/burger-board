@@ -36,33 +36,38 @@ function app_load_board(profileID) {
         app_sidebar_get();
         app_menus_get();
 
+        let modalOptions = {
+            escapeClose: false,
+            clickClose: false,
+            showClose: true
+        }
         // Add Listeners        
         $('#board-preview-open').click(function (event) {
-            $('#modal-board-preview').modal();
+            $('#modal-board-preview').modal(modalOptions);
         });
 
         $('.ab_featured').click(function (event) {
-            $('#modal-edit-featured').modal();
+            $('#modal-edit-featured').modal(modalOptions);
         });
-     
+
         $('.ab_sidebar').click(function (event) {
-            $('#modal-edit-sidebar').modal();
+            $('#modal-edit-sidebar').modal(modalOptions);
         });
 
         $('.ab_menu_1').click(function (event) {
-            $('#modal-edit-menu-1').modal();
+            $('#modal-edit-menu-1').modal(modalOptions);
         });
 
         $('.ab_menu_2').click(function (event) {
-            $('#modal-edit-menu-2').modal();
+            $('#modal-edit-menu-2').modal(modalOptions);
         });
 
         $('.ab_menu_3').click(function (event) {
-            $('#modal-edit-menu-3').modal();
+            $('#modal-edit-menu-3').modal(modalOptions);
         });
 
         $('.ab_menu_4').click(function (event) {
-            $('#modal-edit-menu-4').modal();
+            $('#modal-edit-menu-4').modal(modalOptions);
         });
     });
 }
@@ -76,7 +81,7 @@ function app_sidebar_get() {
         myHTML += `<p>${sideBar.sidebar_header}</p>`;
         myHTML += `<p>${sideBar.backgroundImgId}`;
 
-        $('.ab_sidebar').append(myHTML)
+        $('.ab_sidebar').html(myHTML)
     });
 }
 
@@ -230,7 +235,8 @@ function app_template_create() {
     objData.backgroundImgId = parseInt($("#template-image-choice").val());
 
     $.post('/api/template/create', objData, function (packageGet) {
-        console.log(packageGet);
+        app_templates_get();
+        $.modal.close();
     });
 
 }
@@ -242,7 +248,6 @@ function app_template_add_to_featured() {
     let profileID = localProfile.currentProfile;
 
     $.post(`/api/featured/${profileID}/${templateID}`, function (packageGet) {
-        console.log(packageGet);
     });
 }
 
@@ -283,8 +288,6 @@ function app_profile_create() {
         if (packageGet) {
 
             app_profiles_get();
-            console.log(packageGet);
-            console.log("SUCCESS!");
             $.modal.close();
         }
     });
@@ -302,8 +305,9 @@ function app_sidebar_update() {
         url: '/api/sidebar/1',
         type: 'PUT',
         data: obj,
-        success: function (data) {
-            alert('Load was performed.');
+        success: function () {
+            app_sidebar_get();
+            $.modal.close();
         }
     });
 }
@@ -343,7 +347,10 @@ function app_menu_update(menu) {
         url: '/api/menu/menuId',
         type: 'PUT',
         data: obj,
-        success: app_menus_get()
+        success: function () {
+            app_menus_get()
+            $.modal.close();
+        }
     });
 
 }
