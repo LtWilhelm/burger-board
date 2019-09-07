@@ -43,7 +43,7 @@ function app_load_board(profileID) {
         }
         // Add Listeners        
         $('#board-preview-open').click(function (event) {
-            $('#modal-board-preview').modal(modalOptions);
+            window.open('/board/', '_blank');
         });
 
         $('.ab_featured').click(function (event) {
@@ -119,36 +119,36 @@ function app_menus_get() {
             myHTML += `
                 <h1>${data.menu_header}</h1>
                 <div>
-                    <p>Item: ${data.item_1}</p>
-                    <p>Price: ${data.price_1}</p>
+                    <p>${data.item_1}</p>
+                    <p>$${data.price_1}</p>
                 </div>
                 <div>
-                    <p>Item: ${data.item_2}</p>
-                    <p>Price: ${data.price_2}</p>
+                    <p>${data.item_2}</p>
+                    <p>$${data.price_2}</p>
                 </div>
                 <div>
-                    <p>Item: ${data.item_3}</p>
-                    <p>Price: ${data.price_3}</p>
+                    <p>${data.item_3}</p>
+                    <p>$${data.price_3}</p>
                 </div>
                 <div>
-                    <p>Item: ${data.item_4}</p>
-                    <p>Price: ${data.price_4}</p>
+                    <p>${data.item_4}</p>
+                    <p>$${data.price_4}</p>
                 </div>
                 <div>
-                    <p>Item: ${data.item_5}</p>
-                    <p>Price: ${data.price_5}</p>
+                    <p>${data.item_5}</p>
+                    <p>$${data.price_5}</p>
                 </div>
                 <div>
-                    <p>Item: ${data.item_6}</p>
-                    <p>Price: ${data.price_6}</p>
+                    <p>${data.item_6}</p>
+                    <p>$${data.price_6}</p>
                 </div>
                 <div>
-                    <p>Item: ${data.item_7}</p>
-                    <p>Price: ${data.price_7}</p>
+                    <p>${data.item_7}</p>
+                    <p>$${data.price_7}</p>
                 </div>
                 <div>
-                    <p>Item: ${data.item_8}</p>
-                    <p>Price: ${data.price_8}</p>
+                    <p>${data.item_8}</p>
+                    <p>$${data.price_8}</p>
                 </div>
             `;
             $('.ab_menu_' + (index + 1)).html(myHTML);
