@@ -8,9 +8,10 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // Middleware
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+//app.use(express.json());
 app.use(express.static("public"));
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 
 //EJS
 app.set('view engine', 'ejs');
@@ -28,9 +29,17 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
+db.sequelize.sync(syncOptions).then(function () {
+    
+    // Seed Default Profile
+    db.Profile.create({profile_name: "Breakfast"}).then(function (dbProfile) {
+        for (let i = 0; i < 4; i++) {
+            db.MenuColumn.create({ ProfileId: dbProfile.id });
+        }
+        db.SideBar.create({ sidebarId: dbProfile.id });
+    });
     require('./photoScraper')('./public/imgs');
-    app.listen(PORT, function() {
+    app.listen(PORT, function () {
         console.log(
             "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
             PORT,

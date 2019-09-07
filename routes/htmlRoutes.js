@@ -2,6 +2,7 @@ const db = require("../models");
 const path = require("path");
 
 module.exports = function (app) {
+    
     // Load index page
     app.get("/", function (req, res) {
         db.Profile.findAll({}).then(function (dbExamples) {
@@ -15,6 +16,11 @@ module.exports = function (app) {
     // Load index page
     app.get("/admin", function (req, res) {
         res.render("pages/admin");
+    });
+
+    // Load index page
+    app.get("/board", function (req, res) {
+        res.render("pages/board");
     });
 
     // Load example page and pass in an example by id

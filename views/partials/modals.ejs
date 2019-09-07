@@ -1,5 +1,20 @@
 <!-- Modals -->
 
+<div id="modal-board-preview" class="modal modal-full">
+    <div class="board-container">
+        <div class="siema bc-featured">
+            <div><img src="/imgs/uploaded/f_burger.png"></div>
+            <div><img src="/imgs/uploaded/f_burger.png"></div>
+            <div><img src="/imgs/uploaded/f_burger.png"></div>
+        </div>
+        <div class="bc-sidebar"></div>
+        <div id="m1" class="bc-menu"></div>
+        <div id="m2" class="bc-menu"></div>
+        <div id="m3" class="bc-menu"></div>
+        <div id="m4" class="bc-menu"></div>
+    </div>
+</div>
+
 
 <!-- PROFILE: NEW -->
 <div id="modal-new-profile" class="modal">
@@ -44,7 +59,7 @@
 <div id="modal-edit-template" class="modal">
 
     <h1>Edit Template</h1>
-    <select>
+    <select class="list-templates">
 
     </select>
 </div>
@@ -69,58 +84,228 @@
 </div>
 
 <!-- PREVIEWBOARD MODALS -->
+<!-- PREVIEWBOARD MODALS -->
+<!-- PREVIEWBOARD MODALS -->
 
 <!-- FEATURED: EDIT -->
 <div id="modal-edit-featured" class="modal">
 
-    <h1>EDIT FEATURED</h1>
-    <select>
+    <h1>Edit Featured List</h1>
+    <div>
+        <select id="list-featured-add-templates" class="list-templates">
+        </select>
+        <button onclick="app_template_add_to_featured()" class="btn-profile-edit">Add</button>
+    </div>
+    <p>---List of Templates---</p>
+    <div id="list-featured-templates-current"></div>
 
-    </select>
 </div>
 
 
 <!-- SIDEBAR: EDIT -->
 <div id="modal-edit-sidebar" class="modal">
-
-    <h1>EDIT SIDEBAR</h1>
-    <select>
-
-    </select>
+    <div class="modal-box">
+        <h1>EDIT SIDEBAR</h1>
+        <input id="sidebar-header-field">
+        <select id="sidebar-image-choice" class="list-images-options">
+        </select>
+        <button onclick="app_sidebar_update()">Add</button>
+    </div>
 </div>
 
 <!-- MENU: EDIT -->
 <div id="modal-edit-menu-1" class="modal">
 
-    <h1>EDIT MENU</h1>
-    <select>
+    <h1>EDIT MENU 1</h1>
+    <div class="flex-center">
+        <input id="menu_1_header">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_1_item_1">
+        <input class="menu-update-input-field" id="menu_1_price_1">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_1_item_2">
+        <input class="menu-update-input-field" id="menu_1_price_2">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_1_item_3">
+        <input class="menu-update-input-field" id="menu_1_price_3">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_1_item_4">
+        <input class="menu-update-input-field" id="menu_1_price_4">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_1_item_5">
+        <input class="menu-update-input-field" id="menu_1_price_5">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_1_item_6">
+        <input class="menu-update-input-field" id="menu_1_price_6">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_1_item_7">
+        <input class="menu-update-input-field" id="menu_1_price_7">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_1_item_8">
+        <input class="menu-update-input-field" id="menu_1_price_8">
+    </div>
 
-    </select>
+    <div class="flex-center">
+        <select id="menu_1_image_choice" class="list-images-options"></select>
+    </div>
+
+    <div class="flex-center">
+        <button onclick="app_menu_update(1)">Update</button>
+    </div>
 </div>
 
 <!-- MENU: EDIT -->
 <div id="modal-edit-menu-2" class="modal">
+    <h1>EDIT MENU 2</h1>
+    <div class="flex-center">
+        <input id="menu_2_header">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_2_item_1">
+        <input class="menu-update-input-field" id="menu_2_price_1">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_2_item_2">
+        <input class="menu-update-input-field" id="menu_2_price_2">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_2_item_3">
+        <input class="menu-update-input-field" id="menu_2_price_3">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_2_item_4">
+        <input class="menu-update-input-field" id="menu_2_price_4">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_2_item_5">
+        <input class="menu-update-input-field" id="menu_2_price_5">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_2_item_6">
+        <input class="menu-update-input-field" id="menu_2_price_6">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_2_item_7">
+        <input class="menu-update-input-field" id="menu_2_price_7">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_2_item_8">
+        <input class="menu-update-input-field" id="menu_2_price_8">
+    </div>
+    <div class="flex-center">
+        <select id="menu_2_image_choice" class="list-images-options"></select>
+    </div>
 
-    <h1>EDIT MENU</h1>
-    <select>
-
-    </select>
+    <div class="flex-center">
+        <button onclick="app_menu_update(2)">Update</button>
+    </div>
 </div>
 
 <!-- MENU: EDIT -->
 <div id="modal-edit-menu-3" class="modal">
 
-    <h1>EDIT MENU</h1>
-    <select>
+    <h1>EDIT MENU 3</h1>
 
-    </select>
+    <div class="flex-center">
+        <input id="menu_3_header">
+    </div>
+
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_3_item_1">
+        <input class="menu-update-input-field" id="menu_3_price_1">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_3_item_2">
+        <input class="menu-update-input-field" id="menu_3_price_2">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_3_item_3">
+        <input class="menu-update-input-field" id="menu_3_price_3">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_3_item_4">
+        <input class="menu-update-input-field" id="menu_3_price_4">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_3_item_5">
+        <input class="menu-update-input-field" id="menu_3_price_5">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_3_item_6">
+        <input class="menu-update-input-field" id="menu_3_price_6">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_3_item_7">
+        <input class="menu-update-input-field" id="menu_3_price_7">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_3_item_8">
+        <input class="menu-update-input-field" id="menu_3_price_8">
+    </div>
+
+    <div class="flex-center">
+        <select id="menu_3_image_choice" class="list-images-options"></select>
+    </div>
+    <div class="flex-center">
+        <button onclick="app_menu_update(3)">Update</button>
+    </div>
 </div>
 
 <!-- MENU: EDIT -->
 <div id="modal-edit-menu-4" class="modal">
 
-    <h1>EDIT MENU</h1>
-    <select>
+    <h1>EDIT MENU 4</h1>
+    <div class="flex-center">
+        <input id="menu_4_header">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_4_item_1">
+        <input class="menu-update-input-field" id="menu_4_price_1">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_4_item_2">
+        <input class="menu-update-input-field" id="menu_4_price_2">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_4_item_3">
+        <input class="menu-update-input-field" id="menu_4_price_3">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_4_item_4">
+        <input class="menu-update-input-field" id="menu_4_price_4">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_4_item_5">
+        <input class="menu-update-input-field" id="menu_4_price_5">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_4_item_6">
+        <input class="menu-update-input-field" id="menu_4_price_6">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_4_item_7">
+        <input class="menu-update-input-field" id="menu_4_price_7">
+    </div>
+    <div class="flex-center">
+        <input class="menu-update-input-field" id="menu_4_item_8">
+        <input class="menu-update-input-field" id="menu_4_price_8">
+    </div>
 
-    </select>
+    <div class="flex-center">
+        <select id="menu_4_image_choice" class="list-images-options"></select>
+    </div>
+
+    <div class="flex-center">
+        <button onclick="app_menu_update(4)">Update</button>
+    </div>
+
+
 </div>

@@ -45,14 +45,14 @@ module.exports = function (app) {
     });
   });
 
-  // Load Featured: GET /api/featured/:profileId
   app.get("/api/featured/:profileId", function (req, res) {
     db.Featured.findAll({
       where: {
         id: req.params.profileId
       },
       include: [{
-        model: db.ImgTable
+        model: db.ImgTable,
+        as: "background_img"
       }]
     }).then(function (dbFeatured) {
       res.json(dbFeatured);
@@ -188,6 +188,8 @@ module.exports = function (app) {
 
   // Edit Sidebar: PUT /api/sidebar/:profileId/:sideBarId
   app.put("/api/sidebar/:sideBarId", function (req, res) {
+
+    console.log(req.body);
     db.SideBar.update(
       req.body,
       {
