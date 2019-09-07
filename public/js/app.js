@@ -23,8 +23,6 @@ app_load_board();
 //app_template_add_to_feature();
 //app_profile_get(1);
 
-
-
 // Load Board
 function app_load_board(profileID) {
 
@@ -39,6 +37,10 @@ function app_load_board(profileID) {
         app_menus_get();
 
         // Add Listeners        
+        $('#board-preview-open').click(function (event) {
+            $('#modal-board-preview').modal();
+        });
+
         $('.ab_featured').click(function (event) {
             $('#modal-edit-featured').modal();
         });

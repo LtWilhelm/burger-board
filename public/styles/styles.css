@@ -351,8 +351,8 @@ li {
 .board-container {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
-  height: max-content;
+  width: 1920px;
+  height: 1080px;
 }
 
 .bc-featured {
@@ -378,4 +378,14 @@ li {
   height: 664px;
   background-color: rgb(21, 81, 99);
   box-shadow:inset 0px 0px 0px 2px #ffffff;
+}
+
+.modal-full {
+  vertical-align: top !important;
+  min-width: 1920px !important;
+  max-width: 1920px !important;
+  min-height: 1080px !important;
+  max-height: 1080px;
+  box-shadow: none !important;
+  margin: 0 !important;
 }
