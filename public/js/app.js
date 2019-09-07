@@ -5,22 +5,55 @@
 // --- Payton Burr
 // --- Michael Miller
 
-// Modal
+// Begin Application
+// Load Amind Board
+app_load_board();
 
-// LOAD DATA INTO MODALS
-
-// Load List of Profiles
-//app_profiles_get();
-
-// Load list of images
-//app_images_get();
-
-//app_templates_get();
 
 //app_template_add_to_feature();
-
 //app_profile_get(1);
 
+
+// currentProfile = 1;
+// Local Storage 
+let localTest = localStorage.getItem('localProfile');
+
+if (!localTest) {
+    localProfile = { currentProfile: 1 };
+    localStorage.setItem('localProfile', JSON.stringify(localProfile));
+}
+else {
+    localProfile = JSON.parse(localStorage.getItem('localProfile'));
+}
+
+// Load Board
+function app_load_board(profileID) {
+
+    $.get('/api/display/1', function (data) {
+
+        // Update Featured
+        featured_templates_get(data.Profile.id);
+        app_profiles_get();
+        app_images_get();
+        app_templates_get();
+        app_sidebar_get();
+        app_menus_get();
+    });
+}
+
+function app_sidebar_get() {
+    $.get(`/api/display/${localProfile.currentProfile}`, function (data) {
+        let sideBar = data.Profile.sidebar;
+    });
+}
+
+function app_menus_get() {
+    $.get(`/api/display/${localProfile.currentProfile}`, function (data) {
+        let menuArray = data.Profile.menu;
+
+        console.log(menuArray.length)
+    });
+}
 // Load Template list
 function app_templates_get() {
     $.get('/api/templates', function (data) {
@@ -28,10 +61,28 @@ function app_templates_get() {
 
         // Loop through array and load options
         data.forEach(function (templateData) {
-            myHTML += `<option name="${templateData.id}">${templateData.template_name}</option>`;
+            myHTML += `<option value="${templateData.id}">${templateData.template_name}</option>`;
         });
 
         $('.list-templates').html(myHTML);
+    });
+}
+
+
+// Load Templates to current featured
+function featured_templates_get(profileID) {
+
+    let modalList = ``;
+    let previewList = ``;
+    $.get(`/api/display/${localProfile.currentProfile}`, function (data) {
+
+        data.Featured.forEach(function (obj) {
+            modalList += `<p>${obj.Featured.template_name} | <a href="#">Delete</a> </p>`;
+            previewList += `<p>${obj.Featured.template_name}`;
+        });
+
+        $('#list-featured-templates-current').html(modalList);
+        $('.ab_featured').append(previewList);
     });
 }
 
@@ -79,17 +130,19 @@ function app_template_create() {
     objData.template_body = $("#template-body-text").val();
     objData.backgroundImgId = parseInt($("#template-image-choice").val());
 
-    console.log(objData.backgroundImgId);
-
     $.post('/api/template/create', objData, function (packageGet) {
         console.log(packageGet);
     });
 
 }
 
-function app_template_add_to_feature() {
+function app_template_add_to_featured() {
 
-    $.post('/api/featured/1/2', function (packageGet) {
+    // Get Template ID
+    let templateID = $('#list-featured-add-templates').val();
+    let profileID = localProfile.currentProfile;
+
+    $.post(`/api/featured/${profileID}/${templateID}`, function (packageGet) {
         console.log(packageGet);
     });
 }

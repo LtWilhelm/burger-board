@@ -305,6 +305,16 @@ li {
   background-color: #2b80b9;
 }
 
+.modal {
+  color: black;
+}
+
+.modal select {
+  width: max-content;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  padding
+}
 
 /* MODAL STYLES */
 .modal input {
@@ -341,9 +351,12 @@ li {
 .bc-featured {
   width: 1200px;
   height: 416px;
-  background-image: url('/imgs/uploaded/f_burger.png');
-  box-shadow:inset 0px 0px 0px 2px #ffffff;
+  /* box-shadow:inset 0px 0px 0px 2px #ffffff; */
+}
 
+.bc-featured img {
+  outline: 2px solid white;
+  outline-offset: -2px;
 }
 
 .bc-sidebar {
@@ -356,6 +369,6 @@ li {
 .bc-menu {
   width: 480px;
   height: 664px;
-  background-color: red;
+  background-color: rgb(21, 81, 99);
   box-shadow:inset 0px 0px 0px 2px #ffffff;
 }
