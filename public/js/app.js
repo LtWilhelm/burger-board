@@ -6,34 +6,6 @@
 // --- Michael Miller
 
 
-// CONFIG
-$.put = function (url, data, callback, type) {
-
-    if ($.isFunction(data)) {
-        type = type || callback,
-            callback = data,
-            data = {}
-    }
-
-    return $.ajax({
-        url: url,
-        type: 'PUT',
-        success: callback,
-        data: data,
-        contentType: type
-    });
-}
-
-// Begin Application
-// Load Amind Board
-app_load_board();
-
-
-//app_template_add_to_feature();
-//app_profile_get(1);
-
-
-// currentProfile = 1;
 // Local Storage 
 let localTest = localStorage.getItem('localProfile');
 
@@ -44,6 +16,14 @@ if (!localTest) {
 else {
     localProfile = JSON.parse(localStorage.getItem('localProfile'));
 }
+
+// Load Amind Board
+app_load_board();
+
+//app_template_add_to_feature();
+//app_profile_get(1);
+
+
 
 // Load Board
 function app_load_board(profileID) {
@@ -57,6 +37,31 @@ function app_load_board(profileID) {
         app_templates_get();
         app_sidebar_get();
         app_menus_get();
+
+        // Add Listeners        
+        $('.ab_featured').click(function (event) {
+            $('#modal-edit-featured').modal();
+        });
+     
+        $('.ab_sidebar').click(function (event) {
+            $('#modal-edit-sidebar').modal();
+        });
+
+        $('.ab_menu_1').click(function (event) {
+            $('#modal-edit-menu-1').modal();
+        });
+
+        $('.ab_menu_2').click(function (event) {
+            $('#modal-edit-menu-2').modal();
+        });
+
+        $('.ab_menu_3').click(function (event) {
+            $('#modal-edit-menu-3').modal();
+        });
+
+        $('.ab_menu_4').click(function (event) {
+            $('#modal-edit-menu-4').modal();
+        });
     });
 }
 
@@ -65,7 +70,7 @@ function app_sidebar_get() {
         let sideBar = data.Profile.sidebar;
 
         // Update Div
-        let myHTML = ``; 
+        let myHTML = ``;
         myHTML += `<p>${sideBar.sidebar_header}</p>`;
         myHTML += `<p>${sideBar.backgroundImgId}`;
 
@@ -74,33 +79,78 @@ function app_sidebar_get() {
 }
 
 function app_menus_get() {
+
+    console.log("Getting Menus...");
     $.get(`/api/display/${localProfile.currentProfile}`, function (data) {
         let menuArray = data.Profile.menu;
 
-        menuArray.forEach(function(data, index){
+        menuArray.forEach(function (data, index) {
+            let menu = index + 1;
+            console.log(menu)
+
+            let obj = {};
+            obj.menu_header = $(`#menu_${menu}_header`).val(data.menu_header || "Menu Name");
+
+            $(`#menu_${menu}_item_1`).val(data.item_1 || "Item Name");
+            $(`#menu_${menu}_price_1`).val(data.price_1 || 0.00);
+            $(`#menu_${menu}_item_2`).val(data.item_2 || "Item Name");
+            $(`#menu_${menu}_price_2`).val(data.price_2 || 0.00);
+            $(`#menu_${menu}_item_3`).val(data.item_3 || "Item Name");
+            $(`#menu_${menu}_price_3`).val(data.price_3 || 0.00);
+            $(`#menu_${menu}_item_4`).val(data.item_4 || "Item Name");
+            $(`#menu_${menu}_price_4`).val(data.price_4 || 0.00);
+            $(`#menu_${menu}_item_5`).val(data.item_5 || "Item Name");
+            $(`#menu_${menu}_price_5`).val(data.price_5 || 0.00);
+            $(`#menu_${menu}_item_6`).val(data.item_6 || "Item Name");
+            $(`#menu_${menu}_price_6`).val(data.price_6 || 0.00);
+            $(`#menu_${menu}_item_7`).val(data.item_7 || "Item Name");
+            $(`#menu_${menu}_price_7`).val(data.price_7 || 0.00);
+            $(`#menu_${menu}_item_8`).val(data.item_8 || "Item Name");
+            $(`#menu_${menu}_price_8`).val(data.price_8 || 0.00);
+
             let myHTML = ``;
             myHTML += `
                 <h1>${data.menu_header}</h1>
-                <div><p>Item: ${data.item_1}</p>
-                     <p>Price: ${data.price_1}</p>
+                <div>
+                    <p>Item: ${data.item_1}</p>
+                    <p>Price: ${data.price_1}</p>
                 </div>
-                <div><p>Item: ${data.item_2}</p>
-                     <p>Price: ${data.price_2}</p>
+                <div>
+                    <p>Item: ${data.item_2}</p>
+                    <p>Price: ${data.price_2}</p>
                 </div>
-                <div><p>Item: ${data.item_2}</p>
-                     <p>Price: ${data.price_2}</p>
+                <div>
+                    <p>Item: ${data.item_3}</p>
+                    <p>Price: ${data.price_3}</p>
                 </div>
-                <div><p>Item: ${data.item_2}</p>
-                     <p>Price: ${data.price_2}</p>
+                <div>
+                    <p>Item: ${data.item_4}</p>
+                    <p>Price: ${data.price_4}</p>
                 </div>
-                <div><p>Item: ${data.item_2}</p>
-                     <p>Price: ${data.price_2}</p>
+                <div>
+                    <p>Item: ${data.item_5}</p>
+                    <p>Price: ${data.price_5}</p>
+                </div>
+                <div>
+                    <p>Item: ${data.item_6}</p>
+                    <p>Price: ${data.price_6}</p>
+                </div>
+                <div>
+                    <p>Item: ${data.item_7}</p>
+                    <p>Price: ${data.price_7}</p>
+                </div>
+                <div>
+                    <p>Item: ${data.item_8}</p>
+                    <p>Price: ${data.price_8}</p>
                 </div>
             `;
-            $('.ab_menu_' + (index+ 1)).append(myHTML);
+            $('.ab_menu_' + (index + 1)).html(myHTML);
         });
+
+        console.log("Menus Loaded!")
     });
 }
+
 // Load Template list
 function app_templates_get() {
     $.get('/api/templates', function (data) {
@@ -256,5 +306,42 @@ function app_sidebar_update() {
     });
 }
 
+function app_menu_update(menu) {
 
-// JQUERY FIX
+    let obj = {};
+
+    obj.menuId = menu;
+    obj.menu_header = $(`#menu_${menu}_header`).val();
+
+    obj.item_1 = $(`#menu_${menu}_item_1`).val();
+    obj.price_1 = $(`#menu_${menu}_price_1`).val();
+
+    obj.item_2 = $(`#menu_${menu}_item_2`).val();
+    obj.price_2 = $(`#menu_${menu}_price_2`).val();
+
+    obj.item_3 = $(`#menu_${menu}_item_3`).val();
+    obj.price_3 = $(`#menu_${menu}_price_3`).val();
+
+    obj.item_4 = $(`#menu_${menu}_item_4`).val();
+    obj.price_4 = $(`#menu_${menu}_price_4`).val();
+
+    obj.item_5 = $(`#menu_${menu}_item_5`).val();
+    obj.price_5 = $(`#menu_${menu}_price_5`).val();
+
+    obj.item_6 = $(`#menu_${menu}_item_6`).val();
+    obj.price_6 = $(`#menu_${menu}_price_6`).val();
+
+    obj.item_7 = $(`#menu_${menu}_item_7`).val();
+    obj.price_7 = $(`#menu_${menu}_price_7`).val();
+
+    obj.item_8 = $(`#menu_${menu}_item_8`).val();
+    obj.price_8 = $(`#menu_${menu}_price_8`).val();
+
+    $.ajax({
+        url: '/api/menu/menuId',
+        type: 'PUT',
+        data: obj,
+        success: app_menus_get()
+    });
+
+}
